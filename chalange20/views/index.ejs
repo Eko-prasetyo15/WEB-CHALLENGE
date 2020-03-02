@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <title>BREAD</title>
+  </head>
+  <body>
+    <h1 class="container">BREAD (Browse, Read, Edit, Add, Delete)</h1>
+    <h2 class="container">Filter</h2>
+
+    <form method="get">
+      <div class="container">
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">
+            <input type="checkbox" aria-label="Checkbox for following text input" />id
+          </label>
+          <div class="row col-sm-6">
+            <input class="form-control" type="text" placeholder="ID"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">
+            <input type="checkbox" aria-label="Checkbox for following text input" />String
+          </label>
+          <div class="row col-sm-6">
+            <input class="form-control" type="text" placeholder="String"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">
+            <input type="checkbox" aria-label="Checkbox for following text input"
+            />Integer
+          </label>
+          <div class="row col-sm-6">
+            <input class="form-control" type="number" placeholder="Integer"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">
+            <input type="checkbox" aria-label="Checkbox for following text input" />Float
+          </label>
+          <div class="row col-sm-6">
+            <input class="form-control" type="text" placeholder="Float"
+            /></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">
+              <input type="checkbox" aria-label="Checkbox for following text input" />Date
+            </label>
+            <div class="row col-sm-3">
+              <input class="form-control" type="date" placeholder="Date" />to
+              <input class="form-control" type="date" placeholder="Date"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">
+              <input type="checkbox" aria-label="Checkbox for following text input" />Boolean
+            </label>
+            <div class="row col-sm-6">
+              <select class="form-control" id="exampleFormControlSelect1" placeholder ="--chose the bolean--">
+                <option>True</option>
+                <option>False</option>
+              </select>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class ="container">
+          <button type="button" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+    <br>
+    <table class="table container">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">String</th>
+          <th scope="col">Integer</th>
+          <th scope="col">Float</th>
+          <th scope="col">Date</th>
+          <th scope="col">Boolean</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% sqlite3.forEach((item, index) => {%>
+        <tr>
+          <th scope="row"><%=item.id%></th>
+          <td><%= item.String %></td>
+          <td><%= item.Integer %></td>
+          <td><%= item.Float %></td>
+          <td><%= item.Date %></td>
+          <td><%= item.Boolean %></td>
+          <td>
+            <a href="edit/<%= item.id %>"><button type="button" class="btn btn-primary">Edit</button></a>
+            <a href="delete/<%= item.id %>"><button type="button" class="btn btn-danger">Delete</button></a>
+          </td>
+        </tr>
+        <%})%>
+      </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+      <ul class="container pagination">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </nav>
+    <div class="container">
+    <a class="btn btn-primary" type = "submit" href="/add" role="button">add</a>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

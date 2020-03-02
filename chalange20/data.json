@@ -1,0 +1,65 @@
+[
+   {
+      "string": "leho",
+      "integer": "44",
+      "float": "4",
+      "date": "2020-02-01",
+      "boolean": "True"
+   },
+   {
+      "string": "pee mak",
+      "integer": "4",
+      "float": "3,5",
+      "date": "2020-03-03",
+      "boolean": "True"
+   },
+   {
+      "string": "marimar",
+      "integer": "34",
+      "float": "5,5",
+      "date": "2020-03-04",
+      "boolean": "False"
+   },
+   {
+      "string": "maria mercedez",
+      "integer": "87",
+      "float": "6,7",
+      "date": "2020-03-06",
+      "boolean": "True"
+   },
+   {
+      "string": "fulgoso",
+      "integer": "7",
+      "float": "6,5",
+      "date": "2020-03-08",
+      "boolean": "False"
+   },
+   {
+      "string": "betty lapea",
+      "integer": "8",
+      "float": "7,2",
+      "date": "2020-03-19",
+      "boolean": "False"
+   },
+   {
+      "string": "casandra",
+      "integer": "84",
+      "float": "7",
+      "date": "2020-03-24",
+      "boolean": "True"
+   },
+   {
+      "string": "amigos pe sempre",
+      "integer": "77",
+      "float": "5,8",
+      "date": "2020-01-02",
+      "boolean": "True"
+   },
+   {
+      "string": "marisol",
+      "integer": "4",
+      "float": "9,5",
+      "date": "2020-03-31",
+      "boolean": "True"
+   }
+]
