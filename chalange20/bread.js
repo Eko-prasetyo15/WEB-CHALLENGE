@@ -35,24 +35,57 @@ app.get('/add', function (req, res) {
     res.render('add')
 })
 app.post('/add', function (req, res) {
-    const {String, Integer, Float, Date, Boolean} = req.body
+    const {
+        String,
+        Integer,
+        Float,
+        Date,
+        Boolean
+    } = req.body
     let sql = `INSERT INTO bread (String, Integer, Float, Date, Boolean) VALUES ('${String}','${Integer}','${Float}', '${Date}','${Boolean}')`;
-        console.log(sql)
-            db.run(sql, (err) => {
-              if (err) throw err;
-    res.redirect('/')
-            })
+    console.log(sql)
+    db.run(sql, (err) => {
+        if (err) throw err;
+        res.redirect('/')
+    })
 })
 
-app.get('/delete/:id', function (req,res){
+app.get('/delete/:id', function (req, res) {
     let id = req.params.id
     let sql = 'DELETE FROM bread WHERE id = ?';
     db.run(sql, [id], (err, row) => {
-      if (err) throw err;
-      console.log('Deleted successfully');
-      res.redirect('/')
+        if (err) throw err;
+        console.log('Deleted successfully');
+        res.redirect('/')
     })
 })
-app.listen(3006, () => {
-    console.log("web ini berjalan di localhost:3006")
+app.get('/edit/:id', (req, res) => {
+    let id = req.params.id;
+    let sql = `SELECT  * FROM bread WHERE id = ${id}`;
+    db.get(sql, (err, db) => {
+        if (err) throw err;
+        res.render('edit', {
+            item: db
+        });
+    })
 })
+
+app.post('/edit/:id', (req, res) => {
+    const {
+        String,
+        Integer,
+        Float,
+        Date,
+        Boolean
+    } = req.body
+    let id = req.params.id;
+    let sql = `UPDATE bread set String = '${String}', Integer = '${Integer}', Float = '${Float}', Date = '${Date}', Boolean = '${Boolean}'
+    WHERE id = ${id}`;
+    db.run(sql, (err, db) => {
+        if (err) throw err;
+        res.redirect('/')
+    })
+})
+app.listen(3007, () => {
+    console.log("web ini berjalan di localhost:3007")
+}) 
