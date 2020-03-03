@@ -21,7 +21,7 @@
   <body>
     <h1 class="container">BREAD (Browse, Read, Edit, Add, Delete)</h1>
     <h2 class="container">Filter</h2>
-
+    <div class="p-3 mb-2 bg-dark text-white"></div>
     <form action="/" method="get">
       <div class="container">
         <div class="form-group row">
@@ -84,7 +84,7 @@
             </label>
             <div class="row col-sm-6">
               <select class="form-control" id="Boolean" name="Boolean">
-                <option disabled selected placeholder=""> choose the boolean </option>
+                <option disabled selected placeholder="">--choose the boolean--</option>
                 <option value = "True" <%= query.check_Boolean == "True" ? ' selected' : '' %> </option>True</option>
                 <option value = "False" <%= query.check_Boolean == "False" ? ' selected' : '' %> </option>False</option>
               </select>
@@ -98,6 +98,7 @@
         </div>
     </form>
     <br>
+    
     <table class="table container">
       <thead class="thead-dark">
         <tr>
