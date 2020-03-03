@@ -48,16 +48,39 @@ app.get('/', (req, res) => {
         result.push(`Boolean = '${req.query.Boolean}'`);
         filterData = true;
     }
-
-    let sql = `SELECT * from bread`;
+    let sql2 = ` SELECT COUNT (*) AS total FROM bread`;
     if (filterData) {
-        sql = sql + ` WHERE ${result.join(' AND ')}`
-        console.log(sql)
+        sql2 = sql2 + `WHERE ${result.join(' AND ')}`;
     }
-    db.all(sql, (err, row) => {
-        res.render('index', {
-            data: row,
-            query: req.query
+    db.all(sql2, (err, count) => {
+        if (err) throw err;
+        const page = req.query.page || 1;
+        const limit = 5;
+        const offset = (page - 1) * limit;
+        const total = count[0].total;
+        console.log(count)
+        console.log(`ini total = ${total}`);
+
+        const pages = Math.ceil(total / limit);
+        console.log(`${pages}`)
+
+        let sql = `SELECT * from bread`;
+        if (filterData) {
+            sql = sql + ` WHERE ${result.join(' AND ')}`
+            console.log(sql)
+        }
+        sql = sql + ` LIMIT ${limit} OFFSET ${offset}`;
+        console.log(sql)
+        db.all(sql, (err, row) => {
+            if (err) {
+                return console.error(err.message);
+            }
+            res.render('index', {
+                data: row,
+                query: req.query,
+                page,
+                pages
+            });
         });
     });
 });
