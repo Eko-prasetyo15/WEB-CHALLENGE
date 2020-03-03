@@ -22,25 +22,14 @@
     <h1 class="container">BREAD (Browse, Read, Edit, Add, Delete)</h1>
     <h2 class="container">Filter</h2>
 
-    <form method="get">
+    <form action="/" method="get">
       <div class="container">
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">
-            <input type="checkbox" aria-label="Checkbox for following text input" />id
+          <label for = "id" class="col-sm-2 col-form-label">
+            <input type ="checkbox" name ="check_id" <%= query.check_id ? ' checked' : '' %>>id
           </label>
           <div class="row col-sm-6">
-            <input class="form-control" type="text" name ="id" value="id" placeholder="ID"
-            />
-          </div>
-        </div> 
-      </div>
-      <div class="container">
-        <div class="form-group row">
-          <label class="col-sm-2 col-form-label">
-            <input type="checkbox" aria-label="Checkbox for following text input" />String
-          </label>
-          <div class="row col-sm-6">
-            <input class="form-control" type="text" name="String" value="String" placeholder="String"
+            <input class="form-control" type="text" id= "id" value= "<%= query.id %>" name ="id"  placeholder="ID"
             />
           </div>
         </div>
@@ -48,11 +37,10 @@
       <div class="container">
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">
-            <input type="checkbox" aria-label="Checkbox for following text input"
-            />Integer
+            <input type="checkbox" name = "check_String" aria-label="Checkbox for following text input" <%= query.check_String ? ' checked ' : '' %>>String
           </label>
           <div class="row col-sm-6">
-            <input class="form-control" type="number" name="Integer" value="Integer" placeholder="Integer"
+            <input class="form-control" type="text" name="String" value = "<%= query.String %>" placeholder="String"
             />
           </div>
         </div>
@@ -60,41 +48,53 @@
       <div class="container">
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">
-            <input type="checkbox" aria-label="Checkbox for following text input" />Float
+            <input type="checkbox" name = "check_Integer" aria-label="Checkbox for following text input" <%= query.check_Integer ? ' Checked' : '' %>>Integer
           </label>
           <div class="row col-sm-6">
-            <input class="form-control" type="text" name="Float" value="Float" placeholder="Float"
+            <input class="form-control" type="number" name="Integer" value = "<%= query.Integer %>" placeholder="Integer"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">
+            <input type="checkbox" name = "check_Float" aria-label="Checkbox for following text input" <%= query.check_Float ? ' Checked' : '' %>/>Float
+          </label>
+          <div class="row col-sm-6">
+            <input class="form-control" type="text" name="Float" value = "<%= query.Float %>" placeholder="Float"
             /></div>
           </div>
         </div>
         <div class="container">
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">
-              <input type="checkbox" aria-label="Checkbox for following text input" />Date
+              <input type="checkbox" name = "check_Date" <%= query.check_Date ? ' checked' : '' %> />Date
             </label>
             <div class="row col-sm-3">
-              <input class="form-control" type="date" name= "Date" value="Date" placeholder="Date" />to
-              <input class="form-control" type="date" name="Date" value="Date" placeholder="Date"
-              />
+              <input class="form-control" type="date" name= "startDate" id="startDate" value = "<%= query.startDate %>">to
+              <input class="form-control" type="date"  id="endDate" name="endDate" value = "<%= query.endDate %>">
             </div>
           </div>
         </div>
         <div class="container">
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">
-              <input type="checkbox" aria-label="Checkbox for following text input" />Boolean
+              <input type="checkbox" name= "check_Boolean" <%= query.check_Boolean ? ' checked' : '' %>/>Boolean
             </label>
             <div class="row col-sm-6">
-              <select class="form-control" id="exampleFormControlSelect1" name="Boolean" value="Boolean" placeholder ="--chose the bolean--">
-                <option>True</option>
-                <option>False</option>
+              <select class="form-control" id="Boolean" name="Boolean">
+                <option disabled selected placeholder=""> choose the boolean </option>
+                <option value = "True" <%= query.check_Boolean == "True" ? ' selected' : '' %> </option>True</option>
+                <option value = "False" <%= query.check_Boolean == "False" ? ' selected' : '' %> </option>False</option>
               </select>
             </div>
             </div>
           </div>
         </div>
         <div class ="container">
-          <button type="button" class="btn btn-primary">Search</button>
+          <button type="submit" class="btn btn-primary">Search</button>
+          <a href="/" type="submit" class="btn btn-primary">reset</a>
         </div>
     </form>
     <br>
@@ -111,14 +111,14 @@
         </tr>
       </thead>
       <tbody>
-        <% sqlite3.forEach((item, index) => {%>
+        <% data.forEach((item) => {%>
         <tr>
           <th scope="row"><%=item.id%></th>
-          <td><%= item.String %></td>
-          <td><%= item.Integer %></td>
-          <td><%= item.Float %></td>
-          <td><%= item.Date %></td>
-          <td><%= item.Boolean %></td>
+          <td><%=item.String%></td>
+          <td><%=item.Integer%></td>
+          <td><%=item.Float%></td>
+          <td><%=item.Date%></td>
+          <td><%=item.Boolean%></td>
           <td>
             <a href="edit/<%= item.id %>"><button type="button" class="btn btn-primary">Edit</button></a>
             <a href="delete/<%= item.id %>"><button type="button" class="btn btn-danger">Delete</button></a>
