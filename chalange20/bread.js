@@ -49,7 +49,7 @@ app.get('/', (req, res) => {
         filterData = true;
     }
 
-    let sql = `Select * from bread`;
+    let sql = `SELECT * from bread`;
     if (filterData) {
         sql = sql + ` WHERE ${result.join(' AND ')}`
         console.log(sql)
